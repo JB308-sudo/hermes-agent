@@ -13,5 +13,8 @@ RUN . venv/bin/activate && uv pip install -e ".[all]"
 
 RUN mkdir -p /root/.local/bin && ln -sf /app/venv/bin/hermes /root/.local/bin/hermes
 
+RUN pip install flask
+
 EXPOSE 10000
-CMD ["hermes", "gateway"]
+
+CMD flask run --host=0.0.0.0 --port=10000 & hermes gateway
